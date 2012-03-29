@@ -4,7 +4,7 @@ package nyoronsheppard.android.SaberyGanar;
  * Clase Button
  * @author nyoronsheppard
  * @date   29/03/2012 
- * @version 0.0.1
+ * @version 0.0.5
  */
 public class ButtonSound {
 	

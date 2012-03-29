@@ -14,12 +14,13 @@ import android.widget.TextView;
 /**
  * Clase Principal del programa
  * @author nyoronsheppard
- *
+ * @date   29/03/2012
+ * @version 0.0.5
  */
 public class SaberyGanar extends Activity 
 {
 	//Constantes
-	public final int KMAX = 2;
+	public final int KMAX = 22;
 	
 	
 	//Variables	
