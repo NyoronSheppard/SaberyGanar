@@ -19,7 +19,11 @@ import android.widget.TextView;
 public class SaberyGanar extends Activity 
 {
 	
-	private ListButtons buttons = new ListButtons();  
+	private ListButtons frases = new ListButtons();  
+	
+	public final int KMAX = 2;
+	
+	private ButtonSound[] buttons = new ButtonSound[KMAX];
 	
     /** Called when the activity is first created. */
     @Override
@@ -35,7 +39,13 @@ public class SaberyGanar extends Activity
         
         lstOpciones.setAdapter(adaptador); 
         
-        buttons.getButtons();
+        frases.getButtons();
+        
+        for(int i = 0; i < KMAX; i++)
+        {
+        	buttons[i] = frases.getPosition(i);
+        	//buttons[i] = new ButtonSound("Hola");
+        }
         
     }
     
@@ -56,7 +66,7 @@ public class SaberyGanar extends Activity
             @SuppressWarnings("unchecked")
 			AdaptadorTitulares(Activity context) 
             {
-                super(context, R.layout.buttonsound, buttons.getSize()); 
+            	super(context, R.layout.buttonsound, buttons);
                 this.context = context;
             }
      
@@ -83,7 +93,7 @@ public class SaberyGanar extends Activity
                 }
              
                 //Metodos get de la clase Titulo
-                holder.titlesound.setText(buttons.getPosition(position).getTitleSound());
+                holder.titlesound.setText(buttons[position].getTitleSound());
                            
                 return(item);
             }

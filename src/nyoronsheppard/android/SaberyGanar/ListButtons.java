@@ -39,7 +39,7 @@ public class ListButtons {
 	{		
 		return (buttonlist[position]);
 	}
-	
+
 	public int getSize()
 	{
 		return (KMAX);
