@@ -1,5 +1,7 @@
 package nyoronsheppard.android.SaberyGanar;
 
+
+//Paquetes Android
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,12 +18,25 @@ import android.widget.TextView;
  */
 public class SaberyGanar extends Activity 
 {
+	
+	private ListButtons buttons = new ListButtons();  
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        //this es el array de titulares
+        AdaptadorTitulares adaptador = new AdaptadorTitulares(this);
+        
+        ListView lstOpciones = (ListView)findViewById(R.id.LstOpciones);
+        
+        lstOpciones.setAdapter(adaptador); 
+        
+        buttons.getButtons();
+        
     }
     
 
@@ -32,7 +47,7 @@ public class SaberyGanar extends Activity
     }
     
     //Adaptador para Incorporar los botones de Clase Titular
-    class AdaptadorTitulares extends ArrayAdapter 
+    class AdaptadorTitulares extends ArrayAdapter
     {
     	 
         Activity context;
@@ -41,7 +56,7 @@ public class SaberyGanar extends Activity
             @SuppressWarnings("unchecked")
 			AdaptadorTitulares(Activity context) 
             {
-                super(context, R.layout.buttonsound, datos); //Datos es el array, hay que cambiarlo
+                super(context, R.layout.buttonsound, buttons.getSize()); 
                 this.context = context;
             }
      
@@ -68,8 +83,8 @@ public class SaberyGanar extends Activity
                 }
              
                 //Metodos get de la clase Titulo
-                holder.titlesound.setText(datos[position].getTitulo());
-             
+                holder.titlesound.setText(buttons.getPosition(position).getTitleSound());
+                           
                 return(item);
             }
     }
