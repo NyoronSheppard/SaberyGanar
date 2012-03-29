@@ -18,12 +18,15 @@ import android.widget.TextView;
  */
 public class SaberyGanar extends Activity 
 {
-	
-	private ListButtons frases = new ListButtons();  
-	
+	//Constantes
 	public final int KMAX = 2;
 	
+	
+	//Variables	
+	private ListButtons frases = new ListButtons();  	
 	private ButtonSound[] buttons = new ButtonSound[KMAX];
+	
+	//Métodos de la clase
 	
     /** Called when the activity is first created. */
     @Override
@@ -39,30 +42,37 @@ public class SaberyGanar extends Activity
         
         lstOpciones.setAdapter(adaptador); 
         
-        frases.getButtons();
+        frases.setButtons();
         
         for(int i = 0; i < KMAX; i++)
         {
         	buttons[i] = frases.getPosition(i);
-        	//buttons[i] = new ButtonSound("Hola");
         }
         
     }
     
 
-    //Clase que nos guarda IDs de layouts para ahorrar memoria
+    /**
+     * Clase que nos guarda IDs de layouts para ahorrar memoria
+     */
     static class ViewHolder 
     {
         TextView titlesound;
     }
     
-    //Adaptador para Incorporar los botones de Clase Titular
+
+    /**
+     * Adaptador para Incorporar los botones de Clase ButtonSound
+     */
     class AdaptadorTitulares extends ArrayAdapter
     {
     	 
         Activity context;
      
-        	//Constructor de la clase
+        	/**
+        	 * Constructor de la clase
+        	 * @param context Contexto donde vamos a crear el constructor
+        	 */
             @SuppressWarnings("unchecked")
 			AdaptadorTitulares(Activity context) 
             {
@@ -70,6 +80,11 @@ public class SaberyGanar extends Activity
                 this.context = context;
             }
      
+            //Métodos
+            
+            /**
+             * Metodo getView utilizado para mostrar la lista
+             */
             public View getView(int position, View convertView, ViewGroup parent)
             {
                 View item = convertView;
