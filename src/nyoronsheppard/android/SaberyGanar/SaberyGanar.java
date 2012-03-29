@@ -15,7 +15,7 @@ import android.widget.TextView;
  * Clase Principal del programa
  * @author nyoronsheppard
  * @date   29/03/2012
- * @version 0.0.5
+ * @version 0.0.6
  */
 public class SaberyGanar extends Activity 
 {
