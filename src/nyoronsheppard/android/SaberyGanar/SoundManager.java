@@ -40,7 +40,8 @@ public class SoundManager {
      * @param sound_id Identificador del sonido
      * @return sndPool.load(pContext, sound_id, 1)
      */
-    public int load(int sound_id){
+    public int load(int sound_id)
+    {
     	return sndPool.load(pContext, sound_id, 1);
     }
      
@@ -49,7 +50,8 @@ public class SoundManager {
      * Reproducir sonido
      * @param sound_id Identificador del sonido
      */
-    public void play(int sound_id){
+    public void play(int sound_id)
+    {
     	sndPool.play(sound_id, leftVolume, rightVolume, 1, 0, rate);
     }
     

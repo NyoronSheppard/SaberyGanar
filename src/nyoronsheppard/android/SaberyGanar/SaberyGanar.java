@@ -5,7 +5,6 @@ package nyoronsheppard.android.SaberyGanar;
 import android.app.Activity;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,6 +15,7 @@ import android.widget.ListView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 
 /**
@@ -33,15 +33,14 @@ public class SaberyGanar extends Activity
 	//Variables	
 	private ListButtons frases = new ListButtons();  	
 	private ButtonSound[] buttons = new ButtonSound[KMAX];
+	
 	OnClickListener buttonClick;
-	
-	//Cargar archivos de sonido
+
 	SoundManager snd;
-	
-	//Controlara los cambios hechos a cada una de las seekbar
 	OnSeekBarChangeListener barChange;
 	
-	
+	TextView seleccionado;
+	ListView lstOpciones;
 	
 	//Métodos de la clase
 	
@@ -52,20 +51,21 @@ public class SaberyGanar extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-
+        
         AdaptadorButtons adaptador = new AdaptadorButtons(this);
         
-        ListView lstOpciones = (ListView)findViewById(R.id.LstOpciones);
-        
-        lstOpciones.setAdapter(adaptador); 
-        
+        lstOpciones = (ListView)findViewById(R.id.LstOpciones);
+        seleccionado = (TextView)findViewById(R.id.seleccionado);
         
         snd = new SoundManager(getApplicationContext());
         
+        lstOpciones.setAdapter(adaptador); 
+           
+        
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         
-        frases.setButtons();
         
+        frases.setButtons();       
         
         for(int i = 0; i < KMAX; i++)
         {
@@ -73,11 +73,15 @@ public class SaberyGanar extends Activity
         	buttons[i].setId(snd.load(frases.getId(i)));
         }
         
+        lstOpciones.setTextFilterEnabled(true);
+        
         lstOpciones.setOnItemClickListener(new OnItemClickListener() 
         {
+        	
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-            	snd.play(frases.getId(position));
+            	seleccionado.setText("Has seleccionado: " + buttons[position].getTitleSound());
+            	snd.play(buttons[position].getId());
             }
          });
         
