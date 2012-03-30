@@ -11,6 +11,7 @@ public class ButtonSound {
 	//Variables
 
 	private String titlesound;
+	private int id;
 	
 	
 	//Constructor
@@ -22,6 +23,7 @@ public class ButtonSound {
 	public ButtonSound(String titlesound)
 	{
 		this.titlesound = new String(titlesound);
+		this.id = -1;
 	}
 	
 	
@@ -32,6 +34,24 @@ public class ButtonSound {
 	public String getTitleSound()
 	{
 		return (titlesound);
+	}
+	
+	/**
+	 * Metodo para obtener la Id
+	 * @return id Identificador
+	 */
+	public int getId()
+	{
+		return (id);
+	}
+	
+	/**
+	 * Metodo para cambiar la id
+	 * @param id Identificador
+	 */
+	public void setId(int id)
+	{
+		this.id = id;
 	}
 	
 

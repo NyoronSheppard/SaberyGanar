@@ -3,13 +3,16 @@ package nyoronsheppard.android.SaberyGanar;
 
 //Paquetes Android
 import android.app.Activity;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 
 
 /**
@@ -27,6 +30,15 @@ public class SaberyGanar extends Activity
 	//Variables	
 	private ListButtons frases = new ListButtons();  	
 	private ButtonSound[] buttons = new ButtonSound[KMAX];
+	OnClickListener buttonClick;
+	
+	//Cargar archivos de sonido
+	SoundManager snd;
+	
+	//Controlara los cambios hechos a cada una de las seekbar
+	OnSeekBarChangeListener barChange;
+	
+	
 	
 	//Métodos de la clase
 	
@@ -37,19 +49,30 @@ public class SaberyGanar extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        //this es el array de titulares
-        AdaptadorTitulares adaptador = new AdaptadorTitulares(this);
+
+        AdaptadorButtons adaptador = new AdaptadorButtons(this);
         
         ListView lstOpciones = (ListView)findViewById(R.id.LstOpciones);
         
         lstOpciones.setAdapter(adaptador); 
         
+        
+        snd = new SoundManager(getApplicationContext());
+        
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        
         frases.setButtons();
+        
+        String 
         
         for(int i = 0; i < KMAX; i++)
         {
         	buttons[i] = frases.getPosition(i);
+        	buttons[i] = frases.getId(i));
         }
+        
+        
+        laser = snd.load(R.raw.laser);
         
     }
     
@@ -66,7 +89,7 @@ public class SaberyGanar extends Activity
     /**
      * Adaptador para Incorporar los botones de Clase ButtonSound
      */
-    class AdaptadorTitulares extends ArrayAdapter
+    class AdaptadorButtons extends ArrayAdapter
     {
     	 
         Activity context;
@@ -76,7 +99,7 @@ public class SaberyGanar extends Activity
         	 * @param context Contexto donde vamos a crear el constructor
         	 */
             @SuppressWarnings("unchecked")
-			AdaptadorTitulares(Activity context) 
+			AdaptadorButtons(Activity context) 
             {
             	super(context, R.layout.buttonsound, buttons);
                 this.context = context;
