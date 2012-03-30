@@ -8,8 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
+
 
 /**
  * Clase Principal del programa
@@ -58,7 +59,7 @@ public class SaberyGanar extends Activity
      */
     static class ViewHolder 
     {
-        TextView titlesound;
+        Button titlesound;
     }
     
 
@@ -99,7 +100,7 @@ public class SaberyGanar extends Activity
              
                     //Creamos el ViewHolder y guardamos los ID del Objeto
                     holder = new ViewHolder();
-                    holder.titlesound = (TextView)item.findViewById(R.id.LblTitulo);
+                    holder.titlesound = (Button)item.findViewById(R.id.LblTitulo);
              
                     item.setTag(holder);
                 }
