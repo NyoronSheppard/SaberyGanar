@@ -5,6 +5,7 @@ package nyoronsheppard.android.SaberyGanar;
 import android.app.Activity;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView;
 
 
 /**
@@ -63,16 +66,20 @@ public class SaberyGanar extends Activity
         
         frases.setButtons();
         
-        String 
         
         for(int i = 0; i < KMAX; i++)
         {
         	buttons[i] = frases.getPosition(i);
-        	buttons[i] = frases.getId(i));
+        	buttons[i].setId(snd.load(frases.getId(i)));
         }
         
-        
-        laser = snd.load(R.raw.laser);
+        lstOpciones.setOnItemClickListener(new OnItemClickListener() 
+        {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+            	snd.play(frases.getId(position));
+            }
+         });
         
     }
     
@@ -124,7 +131,7 @@ public class SaberyGanar extends Activity
                     //Creamos el ViewHolder y guardamos los ID del Objeto
                     holder = new ViewHolder();
                     holder.titlesound = (Button)item.findViewById(R.id.LblTitulo);
-             
+
                     item.setTag(holder);
                 }
                 else
@@ -134,10 +141,14 @@ public class SaberyGanar extends Activity
              
                 //Metodos get de la clase Titulo
                 holder.titlesound.setText(buttons[position].getTitleSound());
-                           
+                                          
                 return(item);
             }
+
     }
+    
+  
+    
     
 }
 
