@@ -13,7 +13,7 @@ public class ButtonSound {
 	private String titlesound;
 	
 	
-	//Constructores
+	//Constructor
 	
 	/**
 	 * Constructor parametizado
@@ -24,8 +24,6 @@ public class ButtonSound {
 		this.titlesound = new String(titlesound);
 	}
 	
-	
-	//Métodos get
 	
 	/**
 	 * Metodo get de la Clase

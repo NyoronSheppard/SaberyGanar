@@ -18,6 +18,7 @@ public class ListButtons {
 	
 	
 	//Constructor
+	
 	/**
 	 * Constructor de la clase
 	 */
@@ -26,7 +27,6 @@ public class ListButtons {
 		this.buttonlist = new ButtonSound[KMAX];
 	}
 	
-	//Métodos get
 	
 	/**
 	 * Metodo que dada una posicion, te devuelve el objeto
@@ -47,7 +47,6 @@ public class ListButtons {
 		return (KMAX);
 	}
 	
-	//Métodos set
 	
 	/**
 	 * Metodo que añade los nombres de los sonidos
