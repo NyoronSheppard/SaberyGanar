@@ -13,8 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 
@@ -22,7 +20,7 @@ import android.widget.TextView;
  * Clase Principal del programa
  * @author nyoronsheppard
  * @date   29/03/2012
- * @version 0.0.6
+ * @version 0.1.5
  */
 public class SaberyGanar extends Activity 
 {
@@ -75,15 +73,15 @@ public class SaberyGanar extends Activity
         
         lstOpciones.setTextFilterEnabled(true);
         
-        lstOpciones.setOnItemClickListener(new OnItemClickListener() 
+        /*lstOpciones.setOnItemClickListener(new OnItemClickListener() 
         {
         	
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
+            {  	   	
             	seleccionado.setText("Has seleccionado: " + buttons[position].getTitleSound());
             	snd.play(buttons[position].getId());
             }
-         });
+         }); */
         
     }
     
@@ -100,7 +98,7 @@ public class SaberyGanar extends Activity
     /**
      * Adaptador para Incorporar los botones de Clase ButtonSound
      */
-    class AdaptadorButtons extends ArrayAdapter
+    class AdaptadorButtons extends ArrayAdapter  implements OnClickListener
     {
     	 
         Activity context;
@@ -145,10 +143,22 @@ public class SaberyGanar extends Activity
              
                 //Metodos get de la clase Titulo
                 holder.titlesound.setText(buttons[position].getTitleSound());
-                                          
+                       
+                holder.titlesound.setTag(position);
+                holder.titlesound.setOnClickListener(this);
+
+                
                 return(item);
             }
-
+            
+            public void onClick(View v) 
+            {
+            	int position = (Integer)v.getTag();  
+            	
+            	seleccionado.setText("Has seleccionado: \n" + buttons[position].getTitleSound());
+            	snd.play(buttons[position].getId());
+            }
+            
     }
     
   
