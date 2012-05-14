@@ -55,9 +55,17 @@ public class SoundManager {
     	sndPool.play(sound_id, leftVolume, rightVolume, 1, 0, rate);
     }
     
+    /**
+     * Para el sonido
+     * @param sound_id Identificador del sonido
+     */
+    public void stop(int sound_id)
+    {
+    	sndPool.stop(sound_id);
+    }
+    
     //Metodos de las SeekBar
     
-
     /**
      * Metodo para controlar el volumen
      * @param vol Volumen

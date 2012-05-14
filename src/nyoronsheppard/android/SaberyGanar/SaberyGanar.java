@@ -73,16 +73,6 @@ public class SaberyGanar extends Activity
         
         lstOpciones.setTextFilterEnabled(true);
         
-        /*lstOpciones.setOnItemClickListener(new OnItemClickListener() 
-        {
-        	
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {  	   	
-            	seleccionado.setText("Has seleccionado: " + buttons[position].getTitleSound());
-            	snd.play(buttons[position].getId());
-            }
-         }); */
-        
     }
     
 
@@ -94,6 +84,26 @@ public class SaberyGanar extends Activity
         Button titlesound;
     }
     
+    static class BeforeSound
+    {
+    	static int beforeSound;
+    	
+    	BeforeSound(int beforeSound)
+    	{
+    		BeforeSound.beforeSound = beforeSound;
+    	}
+    	
+    	public int getBeforeSound()
+    	{
+    		return(beforeSound);
+    	}
+    	
+    	public void setBeforeSound(int beforeSound)
+    	{
+    		BeforeSound.beforeSound = beforeSound;
+    	}
+    }
+    
 
     /**
      * Adaptador para Incorporar los botones de Clase ButtonSound
@@ -102,7 +112,8 @@ public class SaberyGanar extends Activity
     {
     	 
         Activity context;
-     
+        BeforeSound bsound = new BeforeSound(100);
+        
         	/**
         	 * Constructor de la clase
         	 * @param context Contexto donde vamos a crear el constructor
@@ -141,28 +152,35 @@ public class SaberyGanar extends Activity
                     holder = (ViewHolder)item.getTag();
                 }
              
-                //Metodos get de la clase Titulo
-                holder.titlesound.setText(buttons[position].getTitleSound());
-                       
-                holder.titlesound.setTag(position);
+                //Metodos set de la clase Titulo (Se utilizan para rellenar los botones)
+                holder.titlesound.setText(buttons[position].getTitleSound());                       
+               	holder.titlesound.setTag(position);
                 holder.titlesound.setOnClickListener(this);
 
                 
                 return(item);
             }
             
+            /**
+             * Metodo onClick para seleccionar el sonido
+             */
             public void onClick(View v) 
-            {
-            	int position = (Integer)v.getTag();  
+            {           	
+            	int position = (Integer)v.getTag();   
             	
-            	seleccionado.setText("Has seleccionado: \n" + buttons[position].getTitleSound());
-            	snd.play(buttons[position].getId());
+            	snd.stop(bsound.getBeforeSound());
+            	            	
+            	
+            	seleccionado.setText("Has seleccionado: \n" + bsound.getBeforeSound() /*buttons[position].getTitleSound()*/);
+            	snd.play(buttons[position].getId()); 
+            	
+            	
+            	bsound.setBeforeSound(buttons[position].getId());
+            	
+
             }
             
-    }
-    
-  
-    
+    }   
     
 }
 
