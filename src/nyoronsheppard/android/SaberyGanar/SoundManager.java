@@ -112,6 +112,16 @@ public class SoundManager {
     }
     
 
+    //Metodos para liberar memoria
+    /**
+     * Metodo para liberar memoria de una cancion
+     * @param sound_id ID del sonido
+     */
+    public void unloadSong(int sound_id)
+    {
+    	sndPool.unload(sound_id);
+    }
+    
     /**
      * Metodo para liberar memoria cuando cerremos la aplicacion
      */
