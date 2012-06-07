@@ -94,6 +94,7 @@ public class SaberyGanar extends Activity
      */
     class AdaptadorButtons extends ArrayAdapter  implements OnClickListener
     {
+    	AudioManager soundManager;
     	 
         Activity context;
         
@@ -149,13 +150,14 @@ public class SaberyGanar extends Activity
              * del arrayAdapter
              */
             public void onClick(View v) 
-            {           	
+            {         
+            	
             	int position = (Integer)v.getTag();  
             	           	                      	
             	seleccionado.setText("Has seleccionado: \n" + buttons[position].getTitleSound());
             	
             	snd.play(buttons[position].getId()); 
-
+            	
             }
                        
     }   
