@@ -146,6 +146,7 @@ public class SaberyGanar extends Activity
             
             /**
              * Metodo onClick para seleccionar el sonido
+             * del arrayAdapter
              */
             public void onClick(View v) 
             {           	
@@ -170,7 +171,7 @@ public class SaberyGanar extends Activity
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
         {
-        	snd.unloadAll(); //Eliminamos de la memoria las canciones
+        	snd.unloadAll(); //Eliminamos de la memoria todas las canciones
             finish();
         }
         return super.onKeyDown(keyCode, event);
