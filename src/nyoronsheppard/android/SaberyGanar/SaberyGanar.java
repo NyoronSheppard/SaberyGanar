@@ -5,6 +5,7 @@ package nyoronsheppard.android.SaberyGanar;
 import android.app.Activity;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,7 +21,7 @@ import android.widget.TextView;
  * Clase Principal del programa
  * @author nyoronsheppard
  * @date   29/03/2012
- * @version 0.1.5
+ * @version 0.1.7
  */
 public class SaberyGanar extends Activity 
 {
@@ -31,6 +32,9 @@ public class SaberyGanar extends Activity
 	//Variables	
 	private ListButtons frases = new ListButtons();  	
 	private ButtonSound[] buttons = new ButtonSound[KMAX];
+	
+	//Back Button
+
 	
 	OnClickListener buttonClick;
 
@@ -84,27 +88,7 @@ public class SaberyGanar extends Activity
         Button titlesound;
     }
     
-    static class BeforeSound
-    {
-    	static int beforeSound;
-    	
-    	BeforeSound(int beforeSound)
-    	{
-    		BeforeSound.beforeSound = beforeSound;
-    	}
-    	
-    	public int getBeforeSound()
-    	{
-    		return(beforeSound);
-    	}
-    	
-    	public void setBeforeSound(int beforeSound)
-    	{
-    		BeforeSound.beforeSound = beforeSound;
-    	}
-    }
-    
-
+  
     /**
      * Adaptador para Incorporar los botones de Clase ButtonSound
      */
@@ -112,7 +96,6 @@ public class SaberyGanar extends Activity
     {
     	 
         Activity context;
-        BeforeSound bsound = new BeforeSound(100);
         
         	/**
         	 * Constructor de la clase
@@ -166,22 +149,32 @@ public class SaberyGanar extends Activity
              */
             public void onClick(View v) 
             {           	
-            	int position = (Integer)v.getTag();   
+            	int position = (Integer)v.getTag();  
+            	           	                      	
+            	seleccionado.setText("Has seleccionado: \n" + buttons[position].getTitleSound());
             	
-            	//snd.stop(bsound.getBeforeSound());
-            	            
-            	
-            	seleccionado.setText("Has seleccionado: \n" + bsound.getBeforeSound() /*buttons[position].getTitleSound()*/);
             	snd.play(buttons[position].getId()); 
-            	snd.stop(buttons[position].getId());
-            	
-            	
-            	bsound.setBeforeSound(buttons[position].getId());
-            	
 
             }
-            
+                       
     }   
+    
+    /**
+     * Metodo para liberar memoria y parar la aplicacion
+     * cuando utilizamos el boton "Back"
+     * @param keyCode Codigo del boton
+     * @param event Evento que se quiere hacer
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+        	snd.unloadAll(); //Eliminamos de la memoria las canciones
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
     
 }
 
