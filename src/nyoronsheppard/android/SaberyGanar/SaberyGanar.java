@@ -168,11 +168,12 @@ public class SaberyGanar extends Activity
             {           	
             	int position = (Integer)v.getTag();   
             	
-            	snd.stop(bsound.getBeforeSound());
-            	            	
+            	//snd.stop(bsound.getBeforeSound());
+            	            
             	
             	seleccionado.setText("Has seleccionado: \n" + bsound.getBeforeSound() /*buttons[position].getTitleSound()*/);
             	snd.play(buttons[position].getId()); 
+            	snd.stop(buttons[position].getId());
             	
             	
             	bsound.setBeforeSound(buttons[position].getId());
