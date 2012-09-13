@@ -98,6 +98,8 @@ public class SaberyGanar extends Activity
     	 
         Activity context;
         
+        private int lastPlay = -100;
+        
         
         //RingtoneManager ringTone = new RingtoneManager(context);
         
@@ -155,11 +157,20 @@ public class SaberyGanar extends Activity
             public void onClick(View v) 
             {                    	
 
-            	int position = (Integer)v.getTag();  
+            	int position = (Integer)v.getTag(); 
+            	int idPlay;
+            	
             	
             	seleccionado.setText("Has seleccionado: \n" + buttons[position].getTitleSound());
             	
-            	snd.play(buttons[position].getId()); 
+            	idPlay = snd.play(buttons[position].getId()); 
+            	
+            	if(lastPlay != -100)
+            	{
+            		snd.stop(lastPlay);
+            	}
+            	
+            	lastPlay = idPlay;
             	
             }
                        

@@ -13,5 +13,7 @@
 07/06/2012 --> Rebasada la rama master con la rama de sound
 07/06/2012 --> Creada rama storage
 
-09/06/2012 --> Insertada la Clase ExternalStorage
-09/06/2012 --> Modificaciones realizadas en ButtonSound y ListButtons
+09/06/2012 --> Creados métodos de la clase ExternalStorage
+09/06/2012 --> Fallo en InputStream is = getResources()
+09/06/2012 --> Insertado JavaDoc
+09/06/2012 --> Fallo areglado añadiendo a la clase (constructor) la Activity

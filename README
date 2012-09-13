@@ -17,3 +17,5 @@
 09/06/2012 --> Fallo en InputStream is = getResources()
 09/06/2012 --> Insertado JavaDoc
 09/06/2012 --> Fallo areglado añadiendo a la clase (constructor) la Activity
+
+13/09/2012 --> Arreglada la función stop.
